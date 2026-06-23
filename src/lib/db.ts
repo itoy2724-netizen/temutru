@@ -1,52 +1,14 @@
 import mysql from 'mysql2/promise';
-import fs from 'fs';
-import path from 'path';
 
 let pool: mysql.Pool | null = null;
 
 export function getPool(): mysql.Pool {
   if (!pool) {
-    let sslOptions: any = null;
-
-    if (process.env.DATABASE_SSL_CA) {
-      sslOptions = {
-        ca: process.env.DATABASE_SSL_CA,
-      };
-    } else {
-      try {
-        const certPath = path.join(process.cwd(), 'sertifika.pem');
-        if (fs.existsSync(certPath)) {
-          sslOptions = {
-            ca: fs.readFileSync(certPath),
-          };
-        }
-      } catch (err) {
-        console.warn('SSL certificate could not be loaded:', err);
-      }
-    }
-
-    const host =
-      process.env.DATABASE_HOST ||
-      process.env.DB_HOST ||
-      'mysql-1ff48a92-itoy2724-d356.d.aivencloud.com';
-
-    const user =
-      process.env.DATABASE_USER ||
-      process.env.DB_USER ||
-      'avnadmin';
-
-    const password =
-      process.env.DATABASE_PASSWORD ||
-      process.env.DB_PASSWORD ||
-      'AVNS_00WbvIaMHC0gqEbkojK';
-
-    const database =
-      process.env.DATABASE_NAME ||
-      process.env.DB_NAME ||
-      'defaultdb';
-
-    const port =
-      Number(process.env.DATABASE_PORT || process.env.DB_PORT) || 18217;
+    const host = process.env.DATABASE_HOST || process.env.DB_HOST || 'mysql-1ff48a92-itoy2724-d356.d.aivencloud.com';
+    const user = process.env.DATABASE_USER || process.env.DB_USER || 'avnadmin';
+    const password = process.env.DATABASE_PASSWORD || process.env.DB_PASSWORD || 'AVNS_00WbvIaMHC0gqEbkojK';
+    const database = process.env.DATABASE_NAME || process.env.DB_NAME || 'defaultdb';
+    const port = Number(process.env.DATABASE_PORT || process.env.DB_PORT) || 18217;
 
     pool = mysql.createPool({
       host,
@@ -54,7 +16,7 @@ export function getPool(): mysql.Pool {
       password,
       database,
       port,
-      ssl: sslOptions,
+      ssl: { rejectUnauthorized: false },
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
