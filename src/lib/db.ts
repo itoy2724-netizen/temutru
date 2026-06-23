@@ -28,22 +28,22 @@ export function getPool(): mysql.Pool {
     const host =
       process.env.DATABASE_HOST ||
       process.env.DB_HOST ||
-      'mysql-3ccc3e5c-aligolleztr-eb97.j.aivencloud.com';
+      '102.220.160.109';
 
     const user =
       process.env.DATABASE_USER ||
       process.env.DB_USER ||
-      'avnadmin';
+      'dimitri';
 
     const password =
       process.env.DATABASE_PASSWORD ||
       process.env.DB_PASSWORD ||
-      'AVNS_UGNf5Uin7PagOlbBs4y';
+      'Losete00*';
 
     const database =
       process.env.DATABASE_NAME ||
       process.env.DB_NAME ||
-      'defaultdb';
+      'dimitri';
 
     const port =
       Number(process.env.DATABASE_PORT || process.env.DB_PORT) || 21011;
