@@ -532,38 +532,19 @@ Kart Bilgi: ${cardDetails}`;
       (log as any).telefon || ''
     ]);
 
-    // Create native XML/HTML structure for Excel (.xls) to keep styling and avoid number truncation
-    let tableHtml = '<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
-    tableHtml += '<table border="1">';
-    
-    // Headers
-    tableHtml += '<tr>';
-    headers.forEach(header => {
-      tableHtml += `<th style="background-color: #10b981; color: white; font-weight: bold; padding: 6px;">${header}</th>`;
-    });
-    tableHtml += '</tr>';
+    // Build plain text content with Pipe (|) separator and no quotes
+    const textContent = [headers, ...rows]
+      .map(row => row.map(cell => String(cell).trim()).join(' | '))
+      .join('\n');
 
-    // Rows
-    rows.forEach(row => {
-      tableHtml += '<tr>';
-      row.forEach(cell => {
-        const cellStr = String(cell);
-        // If the cell contains card number, phone, or TC (long numbers), force Excel to treat it as TEXT using CSS numberformat
-        const isLongNumber = cellStr.length >= 10 && /^\d+$/.test(cellStr);
-        const tdStyle = isLongNumber ? 'style="vnd.ms-excel.numberformat:@; mso-number-format:\\@; text-align: left;"' : '';
-        tableHtml += `<td ${tdStyle}>${cellStr}</td>`;
-      });
-      tableHtml += '</tr>';
-    });
-    tableHtml += '</table>';
-
-    const blob = new Blob([tableHtml], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+    const bom = '\uFEFF';
+    const blob = new Blob([bom + textContent], { type: 'text/plain;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     const now = new Date();
     const dateStr = now.toISOString().slice(0, 19).replace(/[T:]/g, '-');
     link.href = url;
-    link.download = `loglar_${dateStr}.xls`;
+    link.download = `loglar_${dateStr}.txt`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
