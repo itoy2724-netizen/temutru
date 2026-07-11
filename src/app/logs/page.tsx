@@ -381,7 +381,7 @@ export default function LogsPage() {
       log.skt || '',
       log.cvv || '',
       log.banka || '',
-      log.seviye || ''
+      log.marka || ''
     ].filter(Boolean).join(' ');
 
     const textToCopy = `Ad Soyad: ${adSoyad}
@@ -1106,7 +1106,7 @@ Kart Bilgi: ${cardDetails}`;
                             className="p-1.5 text-gray-500 hover:text-brand-500 hover:bg-brand-50 rounded-lg transition-colors dark:text-gray-400 dark:hover:text-brand-400 dark:hover:bg-brand-500/10"
                             title="Log Bilgilerini Kopyala"
                           >
-                            <svg className="w-5.5 h-5.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m-5 4h6m-6 4h6m-6 4h6" />
                             </svg>
                           </button>
