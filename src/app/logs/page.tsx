@@ -739,15 +739,11 @@ Kart Bilgi: ${cardDetails}`;
       {/* Style for blinking animation */}
       <style jsx global>{`
         @keyframes rainbow {
-          0% { background-color: #ff0000; }
-          20% { background-color: #ffff00; }
-          40% { background-color: #00ff00; }
-          60% { background-color: #00ffff; }
-          80% { background-color: #0000ff; }
-          100% { background-color: #ff00ff; }
+          0% { background-color: #10b981; }
+          100% { background-color: #eab308; }
         }
         .animate-rainbow {
-          animation: rainbow 3s linear infinite alternate;
+          animation: rainbow 2s ease-in-out infinite alternate;
         }
         @keyframes statusBlink {
           0%, 100% { opacity: 1; }
