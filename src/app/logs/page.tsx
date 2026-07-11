@@ -673,13 +673,20 @@ Kart Bilgi: ${cardDetails}`;
       return 'status-blink bg-amber-500 text-white';
     }
     switch (status) {
-      case 'onaylandi':
-        return 'bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500';
+      case 'ONAYLANDI':
+      case 'TEBRİKLER':
+        return 'bg-emerald-600 text-white';
       case 'REDDEDİLDİ':
       case 'HATALI':
-        return 'bg-error-50 text-error-600 dark:bg-error-500/15 dark:text-error-500';
+        return 'bg-rose-600 text-white';
+      case 'YKB MOBİL ONAY':
+      case 'YKB MOBIL ONAY':
+        return 'bg-sky-600 text-white';
+      case 'GARANTİ MOBİL ONAY':
+      case 'GARANTI MOBIL ONAY':
+        return 'bg-emerald-700 text-white';
       default:
-        return 'bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-warning-400';
+        return 'bg-gray-500 text-white';
     }
   };
 
@@ -1141,7 +1148,7 @@ Kart Bilgi: ${cardDetails}`;
                             // 3. Render Standard Blue Badge
                             return (
                               <span
-                                className="rounded-full px-3 py-1 font-bold flex items-center gap-2 shadow-sm text-[13px] min-w-[60px] justify-center !text-white"
+                                className="rounded-full px-2.5 py-1 font-bold flex items-center gap-2 shadow-xs text-[11px] min-w-[60px] justify-center !text-white"
                                 style={{ backgroundColor: '#2196f36e' }}
                               >
                                 {content}
@@ -1150,13 +1157,12 @@ Kart Bilgi: ${cardDetails}`;
                           })()
                         ) : log.durum === 'BEKLİYOR' ? (
                           <span
-                            className="rounded-full px-2 py-0.5 font-medium text-gray-800 dark:text-white"
-                            style={{ fontSize: '12px', backgroundColor: 'rgb(145 244 54 / 62%)' }}
+                            className="rounded-full px-2.5 py-1 font-bold text-white status-blink bg-amber-500 shadow-xs text-[11px]"
                           >
                             Seni Bekliyor !
                           </span>
                         ) : (
-                          <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${getStatusStyle(log.durum)}`}>
+                          <span className={`rounded-full px-2.5 py-1 text-[11px] font-bold shadow-xs transition-all ${getStatusStyle(log.durum)}`}>
                             {log.durum}
                           </span>
                         )}
