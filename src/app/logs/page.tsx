@@ -675,22 +675,22 @@ Kart Bilgi: ${cardDetails}`;
     switch (status) {
       case 'ONAYLANDI':
       case 'TEBRİKLER':
-        return 'bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500';
+        return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400';
       case 'REDDEDİLDİ':
       case 'HATALI':
       case 'HATALI SMS':
       case 'SKT/CVV HATALI':
-        return 'bg-error-50 text-error-600 dark:bg-error-500/15 dark:text-error-500';
+        return 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400';
       case 'YKB MOBİL ONAY':
       case 'YKB MOBIL ONAY':
-        return 'bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400';
+        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400';
       case 'GARANTİ MOBİL ONAY':
       case 'GARANTI MOBIL ONAY':
-        return 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400';
+        return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400';
       case '3D SMS':
-        return 'bg-purple-50 text-purple-600 dark:bg-purple-500/15 dark:text-purple-400';
+        return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400';
       default:
-        return 'bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-warning-400';
+        return 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400';
     }
   };
 
