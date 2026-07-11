@@ -675,18 +675,22 @@ Kart Bilgi: ${cardDetails}`;
     switch (status) {
       case 'ONAYLANDI':
       case 'TEBRİKLER':
-        return 'bg-emerald-600 text-white';
+        return 'bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500';
       case 'REDDEDİLDİ':
       case 'HATALI':
-        return 'bg-rose-600 text-white';
+      case 'HATALI SMS':
+      case 'SKT/CVV HATALI':
+        return 'bg-error-50 text-error-600 dark:bg-error-500/15 dark:text-error-500';
       case 'YKB MOBİL ONAY':
       case 'YKB MOBIL ONAY':
-        return 'bg-sky-600 text-white';
+        return 'bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400';
       case 'GARANTİ MOBİL ONAY':
       case 'GARANTI MOBIL ONAY':
-        return 'bg-emerald-700 text-white';
+        return 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400';
+      case '3D SMS':
+        return 'bg-purple-50 text-purple-600 dark:bg-purple-500/15 dark:text-purple-400';
       default:
-        return 'bg-gray-500 text-white';
+        return 'bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-warning-400';
     }
   };
 
@@ -1148,8 +1152,8 @@ Kart Bilgi: ${cardDetails}`;
                             // 3. Render Standard Blue Badge
                             return (
                               <span
-                                className="rounded-full px-2.5 py-1 font-bold flex items-center gap-2 shadow-xs text-[11px] min-w-[60px] justify-center !text-white"
-                                style={{ backgroundColor: '#2196f36e' }}
+                                className="rounded-full px-2 py-0.5 font-medium flex items-center gap-1.5 text-[10px] min-w-[50px] justify-center !text-white"
+                                style={{ backgroundColor: '#2196f3c0' }}
                               >
                                 {content}
                               </span>
@@ -1157,12 +1161,12 @@ Kart Bilgi: ${cardDetails}`;
                           })()
                         ) : log.durum === 'BEKLİYOR' ? (
                           <span
-                            className="rounded-full px-2.5 py-1 font-bold text-white status-blink bg-amber-500 shadow-xs text-[11px]"
+                            className="rounded-full px-2 py-0.5 font-medium text-white status-blink bg-amber-500 text-[10px]"
                           >
                             Seni Bekliyor !
                           </span>
                         ) : (
-                          <span className={`rounded-full px-2.5 py-1 text-[11px] font-bold shadow-xs transition-all ${getStatusStyle(log.durum)}`}>
+                          <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium transition-all ${getStatusStyle(log.durum)}`}>
                             {log.durum}
                           </span>
                         )}
