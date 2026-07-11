@@ -25,6 +25,10 @@ export async function PUT(request: NextRequest, { params }: Params) {
         newStatus = 'HATALI SMS';
         controlValue = 'hatalisms';
         break;
+      case 'YKB_MOBIL_ONAY':
+        newStatus = 'YKB MOBİL ONAY';
+        controlValue = 'ykbmobilonay';
+        break;
       case 'INT_KAPALI':
         newStatus = 'İNT KAPALI';
         controlValue = 'internet';
