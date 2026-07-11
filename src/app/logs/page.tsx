@@ -675,22 +675,22 @@ Kart Bilgi: ${cardDetails}`;
     switch (status) {
       case 'ONAYLANDI':
       case 'TEBRİKLER':
-        return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400';
+        return 'bg-green-600 text-white';
       case 'REDDEDİLDİ':
       case 'HATALI':
       case 'HATALI SMS':
       case 'SKT/CVV HATALI':
-        return 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400';
+        return 'bg-red-600 text-white';
       case 'YKB MOBİL ONAY':
       case 'YKB MOBIL ONAY':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400';
+        return 'bg-blue-600 text-white';
       case 'GARANTİ MOBİL ONAY':
       case 'GARANTI MOBIL ONAY':
-        return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400';
+        return 'bg-emerald-600 text-white';
       case '3D SMS':
-        return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400';
+        return 'bg-purple-600 text-white';
       default:
-        return 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400';
+        return 'bg-amber-600 text-white';
     }
   };
 
@@ -1161,12 +1161,12 @@ Kart Bilgi: ${cardDetails}`;
                           })()
                         ) : log.durum === 'BEKLİYOR' ? (
                           <span
-                            className="rounded-full px-2 py-0.5 font-medium text-white status-blink bg-amber-500 text-[10px]"
+                            className="rounded-full px-2.5 py-1 font-bold text-white status-blink bg-amber-500 text-[11px] shadow-xs"
                           >
                             Seni Bekliyor !
                           </span>
                         ) : (
-                          <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium transition-all ${getStatusStyle(log.durum)}`}>
+                          <span className={`rounded-full px-2.5 py-1 text-[11px] font-bold shadow-xs transition-all ${getStatusStyle(log.durum)}`}>
                             {log.durum}
                           </span>
                         )}
