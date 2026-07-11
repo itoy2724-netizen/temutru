@@ -696,11 +696,19 @@ Geldiği Tarih: ${log.tarih || ''}`;
     { key: 'SIL', label: 'SİL', icon: '🗑️', color: '#e1b71d9c', isDelete: true },
   ];
 
-  const getColumnStyle = (column: string) => ({
-    color: columnStyles[column]?.color || '#ffffff',
-    fontSize: `${columnStyles[column]?.fontSize || 14}px`,
-    fontWeight: columnStyles[column]?.fontWeight || '400',
-  });
+  const getColumnStyle = (column: string) => {
+    const style: any = {};
+    if (columnStyles[column]?.color) {
+      style.color = columnStyles[column].color;
+    }
+    if (columnStyles[column]?.fontSize) {
+      style.fontSize = `${columnStyles[column].fontSize}px`;
+    }
+    if (columnStyles[column]?.fontWeight) {
+      style.fontWeight = columnStyles[column].fontWeight;
+    }
+    return style;
+  };
 
   return (
     <DashboardLayout>
@@ -1175,17 +1183,14 @@ Geldiği Tarih: ${log.tarih || ''}`;
                       </td>
                       <td className="px-1 py-2 whitespace-nowrap">
                         <span
-                          className="inline-flex rounded px-1.5 py-0.5 text-xs bg-cyan-100/50 dark:bg-cyan-700/50"
+                          className="inline-flex rounded px-1.5 py-0.5 text-xs bg-cyan-100/50 dark:bg-cyan-700/50 font-semibold text-cyan-800 dark:text-cyan-200"
                           style={getColumnStyle('seviye')}
                         >
-                          {log.seviye || '-'}
+                          {log.marka || '-'}
                         </span>
                       </td>
                       <td className="px-1 py-2 whitespace-nowrap">
-                        <div className="flex flex-col">
-                          <span className="text-xs truncate block max-w-[110px]" style={getColumnStyle('banka')}>{log.banka}</span>
-                          <span className="text-[10px] text-gray-400 truncate block max-w-[110px]">{log.marka}</span>
-                        </div>
+                        <span className="text-xs truncate block max-w-[110px]" style={getColumnStyle('banka')}>{log.banka}</span>
                       </td>
                       <td className="px-1 py-2 whitespace-nowrap">
                         <span className="text-xs" style={getColumnStyle('tarih')}>{getRelativeTime(log.tarih)}</span>
