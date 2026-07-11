@@ -34,7 +34,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
         controlValue = 'internet';
         break;
       case 'PROVIZYON':
-        newStatus = 'PROVİZYON';
+        newStatus = 'SKT/CVV HATALI';
         controlValue = 'provizyon';
         break;
       case 'BAN':
