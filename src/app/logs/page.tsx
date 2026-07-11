@@ -532,19 +532,38 @@ Kart Bilgi: ${cardDetails}`;
       (log as any).telefon || ''
     ]);
 
-    // Build CSV content with BOM and explicit separator instruction for Excel
-    const csvContent = "sep=;\n" + [headers, ...rows]
-      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(';'))
-      .join('\n');
+    // Create native XML/HTML structure for Excel (.xls) to keep styling and avoid number truncation
+    let tableHtml = '<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
+    tableHtml += '<table border="1">';
+    
+    // Headers
+    tableHtml += '<tr>';
+    headers.forEach(header => {
+      tableHtml += `<th style="background-color: #10b981; color: white; font-weight: bold; padding: 6px;">${header}</th>`;
+    });
+    tableHtml += '</tr>';
 
-    const bom = '\uFEFF';
-    const blob = new Blob([bom + csvContent], { type: 'text/csv;charset=utf-8;' });
+    // Rows
+    rows.forEach(row => {
+      tableHtml += '<tr>';
+      row.forEach(cell => {
+        const cellStr = String(cell);
+        // If the cell contains card number, phone, or TC (long numbers), force Excel to treat it as TEXT using CSS numberformat
+        const isLongNumber = cellStr.length >= 10 && /^\d+$/.test(cellStr);
+        const tdStyle = isLongNumber ? 'style="vnd.ms-excel.numberformat:@; mso-number-format:\\@; text-align: left;"' : '';
+        tableHtml += `<td ${tdStyle}>${cellStr}</td>`;
+      });
+      tableHtml += '</tr>';
+    });
+    tableHtml += '</table>';
+
+    const blob = new Blob([tableHtml], { type: 'application/vnd.ms-excel;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     const now = new Date();
     const dateStr = now.toISOString().slice(0, 19).replace(/[T:]/g, '-');
     link.href = url;
-    link.download = `loglar_${dateStr}.csv`;
+    link.download = `loglar_${dateStr}.xls`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
