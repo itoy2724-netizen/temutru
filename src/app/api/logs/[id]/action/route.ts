@@ -29,6 +29,10 @@ export async function PUT(request: NextRequest, { params }: Params) {
         newStatus = 'YKB MOBİL ONAY';
         controlValue = 'ykbmobilonay';
         break;
+      case 'GARANTI_MOBIL_ONAY':
+        newStatus = 'GARANTİ MOBİL ONAY';
+        controlValue = 'garantimobilonay';
+        break;
       case 'INT_KAPALI':
         newStatus = 'İNT KAPALI';
         controlValue = 'internet';
