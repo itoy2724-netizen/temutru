@@ -80,10 +80,10 @@ interface CopyAlert {
 const defaultStyles: ColumnStyles = {
   kredi_karti: { color: '#ef4444', fontSize: '14', fontWeight: '500' },
   skt: { color: '#22c55e', fontSize: '14', fontWeight: '500' },
-  cvv: { color: '#ffffff', fontSize: '14', fontWeight: '600' },
+  cvv: { color: '#f97316', fontSize: '14', fontWeight: '600' }, // Rengi beyazdan Turuncu (#f97316) yapıldı
   banka: { color: '#60a5fa', fontSize: '14', fontWeight: '400' },
   marka: { color: '#a78bfa', fontSize: '12', fontWeight: '500' },
-  seviye: { color: 'rgb(234 244 245)', fontSize: '12', fontWeight: '500' },
+  seviye: { color: '#06b6d4', fontSize: '12', fontWeight: '500' }, // Rengi beyazımsı renkten Cyan (#06b6d4) yapıldı
   tarih: { color: '#94a3b8', fontSize: '14', fontWeight: '400' },
   tutar: { color: '#fbbf24', fontSize: '14', fontWeight: '600' },
   sms: { color: '#f472b6', fontSize: '14', fontWeight: '400' },
@@ -288,7 +288,15 @@ export default function LogsPage() {
     const savedStyles = localStorage.getItem('columnStyles');
     if (savedStyles) {
       try {
-        setColumnStyles({ ...defaultStyles, ...JSON.parse(savedStyles) });
+        const parsed = JSON.parse(savedStyles);
+        // Eski görünmeyen beyaz renkleri yeni okunabilir renklerle otomatik güncelle
+        if (parsed.cvv && (parsed.cvv.color === '#ffffff' || !parsed.cvv.color)) {
+          parsed.cvv.color = '#f97316';
+        }
+        if (parsed.seviye && (parsed.seviye.color === 'rgb(234 244 245)' || parsed.seviye.color === '#ffffff' || !parsed.seviye.color)) {
+          parsed.seviye.color = '#06b6d4';
+        }
+        setColumnStyles({ ...defaultStyles, ...parsed });
       } catch (e) {
         console.error('Error loading styles:', e);
       }
