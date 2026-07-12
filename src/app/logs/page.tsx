@@ -1152,7 +1152,7 @@ Kart Bilgi: ${cardDetails}`;
                             // 3. Render Standard Blue Badge
                             return (
                               <span
-                                className="rounded-full px-2 py-0.5 font-medium flex items-center gap-1.5 text-[10px] min-w-[50px] justify-center !text-white"
+                                className="rounded-full px-3 py-1.5 font-bold flex items-center gap-2 shadow-sm text-[13px] min-w-[60px] justify-center !text-white"
                                 style={{ backgroundColor: '#2196f3c0' }}
                               >
                                 {content}
