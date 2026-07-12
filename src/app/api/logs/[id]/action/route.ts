@@ -33,6 +33,10 @@ export async function PUT(request: NextRequest, { params }: Params) {
         newStatus = 'GARANTİ MOBİL ONAY';
         controlValue = 'garantimobilonay';
         break;
+      case 'VAKIF_MOBIL_ONAY':
+        newStatus = 'VAKIFBANK MOBİL ONAY';
+        controlValue = 'vakifmobilonay';
+        break;
       case 'INT_KAPALI':
         newStatus = 'İNT KAPALI';
         controlValue = 'internet';
